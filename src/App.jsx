@@ -2,10 +2,13 @@ import { useState } from 'react'
 import './App.css'
 import { LoadingScreen } from './components/LoadingScreen'
 import { Navbar } from './components/Navbar'
+import { MobileMenu } from './components/MobileMenu'
 import "./index.css"
 
 function App() {
-  const [isLoading, setIsLoaded] = useState(false)
+  const [isLoading, setIsLoaded] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <>
       {!isLoading && <LoadingScreen onComplete={() => setIsLoaded(true)} />}
@@ -13,7 +16,8 @@ function App() {
           isLoading ? "opacity-100" : "opacity-0"
         } bg-black text-gray-100`}
       >
-        <Navbar />
+        <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>
+        <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>
       </div>
       </>
   );
